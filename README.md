@@ -1,5 +1,9 @@
 # memx
 
+[![tests](https://github.com/B-Gray-W/memx/actions/workflows/tests.yml/badge.svg)](https://github.com/B-Gray-W/memx/actions/workflows/tests.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](pyproject.toml)
+
 **Index-first, file-based memory for AI agents.** Plain Markdown files, no database,
 no embeddings, no network, standard library only.
 

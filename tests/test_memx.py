@@ -1,15 +1,19 @@
-"""Tests for memx. Run: python3 -m unittest discover -s tests -v  (from project dir)"""
+"""Tests for memx. Run: python3 -m unittest discover -s tests -v  (from the project root)"""
 import subprocess
 import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+_ROOT = Path(__file__).resolve().parents[1]
+for _candidate in (_ROOT / "src", _ROOT):
+    if (_candidate / "memx").is_dir() and str(_candidate) not in sys.path:
+        sys.path.insert(0, str(_candidate))
 
 from memx.core import Store, tokenize, MAX_INDEX_LINES, atomic_write  # noqa: E402
 
-PROJ = str(Path(__file__).resolve().parents[1])
+# The directory that *contains* the memx package: the subprocess tests import from it.
+PROJ = str(next(p for p in (_ROOT / "src", _ROOT) if (p / "memx").is_dir()))
 
 
 class MemxTests(unittest.TestCase):
