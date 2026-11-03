@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "memx-agent-memory"
+version = "0.2.0"
+description = "Index-first, file-based memory for AI agents. Plain Markdown, no database, no embeddings."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "memx contributors" }]
+keywords = ["ai", "agent", "memory", "llm", "progressive-disclosure", "markdown"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# No runtime dependencies, by design: the whole point is a memory layer that
+# stays out of the way. Optional extras below are integrations, not requirements.
+dependencies = []
+
+[project.optional-dependencies]
+# The Hermes integration is a plugin, not a library import: it is installed as a
+# directory under $HERMES_HOME/plugins/<name>/ and imports this package at runtime.
+hermes = []
+
+[project.urls]
+Homepage = "https://github.com/B-Gray-W/memx"
+Repository = "https://github.com/B-Gray-W/memx"
+Issues = "https://github.com/B-Gray-W/memx/issues"
+
+[project.scripts]
+memx = "memx.__main__:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["memx*"]
+
+[tool.setuptools.package-data]
+memx = ["py.typed"]
